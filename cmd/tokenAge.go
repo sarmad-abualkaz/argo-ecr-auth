@@ -7,21 +7,21 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func TokenExpired(tokenGenTime time.Time) bool {
+func TokenExpired(tokenExpireyTime time.Time) bool {
 	
 	currentTime := time.Now().UTC()
 
 	log.WithFields(log.Fields{
-		"tokenGenTime": tokenGenTime,
+		"tokenExpireyTime": tokenExpireyTime,
 		"currentTime": currentTime,
 	}).Info("Validating token age ...")
 	
-	diff := currentTime.Sub(tokenGenTime)
+	diff := tokenExpireyTime.Sub(currentTime)
 
-	if diff.Hours() > 11.0 {
+	if diff.Hours() < 2.0 {
 
 		log.WithFields(log.Fields{
-			"tokenGenTime": tokenGenTime,
+			"tokenExpireyTime": tokenExpireyTime,
 			"currentTime": currentTime,
 		}).Warn("Token expired ...")
 		
