@@ -2,11 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# volumes:
-# - name: aws-folder
-#   path: /root/.aws
-#   type: Directory
-
 rbac: true
 
 command:
