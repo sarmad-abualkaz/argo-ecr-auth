@@ -3,11 +3,10 @@ package cmd
 import (
 	"github.com/sarmad-abualkaz/argo-ecr-auth/aws"
 	"github.com/sarmad-abualkaz/argo-ecr-auth/k8s"
-	
-	"k8s.io/client-go/kubernetes"
+
 )
 
-func UpdateECRSecret(awsProfile string, awsRegion string, cmExist bool, ecrRegistry string, k8sClient *kubernetes.Clientset, namespace string, secretExist bool, secret string) error {
+func UpdateECRSecret(awsProfile string, awsRegion string, cmExist bool, ecrRegistry string, k8sClient callk8s.Client, namespace string, secretExist bool, secret string) error {
 
 	// generate aws-session
 	awsClient, awsClientErr := callecr.CreateSession(awsProfile, awsRegion)

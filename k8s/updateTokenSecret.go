@@ -3,18 +3,17 @@ package callk8s
 import (
 	"context"
 
-	"k8s.io/client-go/kubernetes"
 	log "github.com/sirupsen/logrus"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 
-func UpdateTokenSecret(k8sClient *kubernetes.Clientset, secret string, namespace string, password string, ecrRegistry string, exists bool) error {
+func UpdateTokenSecret(k8sClient Client, secret string, namespace string, password string, ecrRegistry string, exists bool) error {
 
 	var err error
 
-	secertsClient := k8sClient.CoreV1().Secrets(namespace)
+	secertsClient := k8sClient.Clientset.CoreV1().Secrets(namespace)
 
 	secreManifest := &v1.Secret{
 		ObjectMeta: metav1.ObjectMeta{
