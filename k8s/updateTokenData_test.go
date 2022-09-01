@@ -21,70 +21,70 @@ func TestUpdateTokenData(t *testing.T) {
 	}
 
 	type args struct {
-		cm      string
-		namespace string
+		cm          string
+		namespace   string
 		expireyTime time.Time
-		name string
-		exists bool
+		name        string
+		exists      bool
 	}
 	tests := []struct {
-		name string
-		args args
+		name            string
+		args            args
 		wantexpireyTime string
-		wantname string
-		wantederr string
+		wantname        string
+		wantederr       string
 	}{
 		{
 			name: "Should fail - no cm exists!",
 			args: args{
-				cm:      "my-cm",
-				namespace: "abualks",
+				cm:          "my-cm",
+				namespace:   "abualks",
 				expireyTime: time.Date(2000, 2, 1, 12, 30, 0, 0, time.UTC),
-				name: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-				exists: true,
+				name:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+				exists:      true,
 			},
 			wantexpireyTime: "2000-02-01T12:30:00Z",
-			wantname: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "configmaps \"my-cm\" not found",
+			wantname:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:       "configmaps \"my-cm\" not found",
 		},
 		{
 			name: "Should succeed - no cm exists, create it!",
 			args: args{
-				cm:      "my-cm",
-				namespace: "abualks",
+				cm:          "my-cm",
+				namespace:   "abualks",
 				expireyTime: time.Date(2000, 2, 1, 12, 30, 0, 0, time.UTC),
-				name: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-				exists: false,
+				name:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+				exists:      false,
 			},
 			wantexpireyTime: "2000-02-01T12:30:00Z",
-			wantname: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "",
+			wantname:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:       "",
 		},
 		{
 			name: "Should succeed - cm exists, up it!",
 			args: args{
-				cm:      "my-cm",
-				namespace: "abualks",
+				cm:          "my-cm",
+				namespace:   "abualks",
 				expireyTime: time.Date(2020, 3, 30, 12, 30, 0, 0, time.UTC),
-				name: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-				exists: true,
+				name:        "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+				exists:      true,
 			},
 			wantexpireyTime: "2020-03-30T12:30:00Z",
-			wantname: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "",
+			wantname:        "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:       "",
 		},
 		{
 			name: "Should fail - cm exists, cannot create!",
 			args: args{
-				cm:      "my-cm",
-				namespace: "abualks",
+				cm:          "my-cm",
+				namespace:   "abualks",
 				expireyTime: time.Date(2020, 3, 30, 12, 30, 0, 0, time.UTC),
-				name: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-				exists: false,
+				name:        "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+				exists:      false,
 			},
 			wantexpireyTime: "2020-03-30T12:30:00Z",
-			wantname: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "configmaps \"my-cm\" already exists",
+			wantname:        "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:       "configmaps \"my-cm\" already exists",
 		},
 	} 
 	for _, tt := range tests {

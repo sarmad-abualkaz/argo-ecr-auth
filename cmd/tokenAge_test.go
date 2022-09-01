@@ -59,7 +59,7 @@ func TestTokenExpired(t *testing.T) {
 	for _, tt := range tests {
 		got := TokenExpired(tt.args.tokenExpireyTime)
 		if !reflect.DeepEqual(got, tt.want){
-			t.Errorf("GenerateECRTokentHelper() = %v, want %v", got, tt.want)
+			t.Errorf("TokenExpired() = %v, want %v", got, tt.want)
 		}
 	} 
 }

@@ -27,70 +27,70 @@ func TestUpdateTokenSecret(t *testing.T) {
 	wantLabelVal  := "repository"
 
 	type args struct {
-		secret      string
+		secret    string
 		namespace string
-		password string
-		ecr string
-		exists bool
+		password  string
+		ecr       string
+		exists    bool
 	}
 	tests := []struct {
-		name string
-		args args
+		name       string
+		args       args
 		wantpasswd string
-		wantecr string
-		wantederr string
+		wantecr    string
+		wantederr  string
 	}{
 		{
 			name: "Should fail - no secret exists!",
 			args: args{
-				secret:      "my-secret",
+				secret:    "my-secret",
 				namespace: "abualks",
-				password: "my-pwd",
-				ecr: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-				exists: true,
+				password:  "my-pwd",
+				ecr:       "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+				exists:    true,
 			},
 			wantpasswd: "my-pwd",
-			wantecr: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "secrets \"my-secret\" not found",
+			wantecr:    "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:  "secrets \"my-secret\" not found",
 		},
 		{
 			name: "Should succeed - no secret exists, create it!",
 			args: args{
-				secret:      "my-secret",
+				secret:    "my-secret",
 				namespace: "abualks",
-				password: "my-pwd",
-				ecr: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-				exists: false,
+				password:  "my-pwd",
+				ecr:       "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+				exists:    false,
 			},
 			wantpasswd: "my-pwd",
-			wantecr: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "",
+			wantecr:    "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:  "",
 		},
 		{
 			name: "Should succeed - secret exists, update it!",
 			args: args{
-				secret:      "my-secret",
+				secret:    "my-secret",
 				namespace: "abualks",
-				password: "my-pwd",
-				ecr: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-				exists: true,
+				password:  "my-pwd",
+				ecr:       "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+				exists:    true,
 			},
 			wantpasswd: "my-pwd",
-			wantecr: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "",
+			wantecr:    "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:  "",
 		},
 		{
 			name: "Should fail - secret exists, cannot create!",
 			args: args{
-				secret:      "my-secret",
+				secret:    "my-secret",
 				namespace: "abualks",
-				password: "my-pwd",
-				ecr: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-				exists: false,
+				password:  "my-pwd",
+				ecr:       "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+				exists:    false,
 			},
 			wantpasswd: "my-pwd",
-			wantecr: "222222222222.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "secrets \"my-secret\" already exists",
+			wantecr:    "222222222222.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:  "secrets \"my-secret\" already exists",
 		},
 	} 
 	for _, tt := range tests {

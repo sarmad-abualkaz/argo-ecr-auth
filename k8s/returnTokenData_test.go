@@ -11,41 +11,41 @@ import (
 
 func TestReturnTokenData(t *testing.T) {
 	type args struct {
-		cm      string
-		namespace string
+		cm          string
+		namespace   string
 		expireyTime string
-		name string
+		name        string
 	}
 	tests := []struct {
-		name string
-		args args
+		name            string
+		args            args
 		wantexpireyTime string
-		wantname string
-		wantederr string
+		wantname        string
+		wantederr       string
 	}{
 		{
 			name: "Should succeed",
 			args: args{
-				cm:      "my-cm",
-				namespace: "abualks",
+				cm:          "my-cm",
+				namespace:   "abualks",
 				expireyTime: "2000-02-01T10:25:30.456Z",
-				name: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+				name:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
 			},
 			wantexpireyTime: "2000-02-01T10:25:30.456Z",
-			wantname: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
-			wantederr: "",
+			wantname:        "111111111111.dkr.ecr.us-east-1.amazonaws.com",
+			wantederr:       "",
 		},
 		{
 			name: "Should fail and log not found",
 			args: args{
-				cm:      "",
-				namespace: "",
+				cm:          "",
+				namespace:   "",
 				expireyTime: "",
-				name: "",
+				name:        "",
 			},
 			wantexpireyTime: "",
-			wantname: "",
-			wantederr: "configmaps \"\" not found",
+			wantname:        "",
+			wantederr:       "configmaps \"\" not found",
 		},
 	}
 	for _, tt := range tests {
@@ -56,10 +56,13 @@ func TestReturnTokenData(t *testing.T) {
 			if tt.args.cm != "" {
 
 				cm := &v1.ConfigMap{
-					ObjectMeta: metav1.ObjectMeta{Namespace: tt.args.namespace, Name: tt.args.cm},
+					ObjectMeta: metav1.ObjectMeta{
+						Namespace: tt.args.namespace, 
+						Name: tt.args.cm,
+					},
 					Data: map[string]string{
 						"expireyTime": tt.args.expireyTime,
-						"name": tt.args.name,
+						"name":        tt.args.name,
 					},
 				}
 				

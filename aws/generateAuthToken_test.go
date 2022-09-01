@@ -24,15 +24,15 @@ func (m mockedGeneratedToken) GetAuthorizationToken(in *ecr.GetAuthorizationToke
 func TestGenerateECRTokent(t *testing.T){
 
 	type args struct {
-		username string
-		password string
+		username       string
+		password       string
 		expirationTime time.Time
 	}
 
 	tests := []struct {
-		name string
-		args args
-		wantpwd string
+		name     string
+		args     args
+		wantpwd  string
 		wanttime time.Time
 	}{
 		{

@@ -29,8 +29,8 @@ func TestValidateECRSecret(t *testing.T) {
 		wantstring     string
 	}{
 		{
-			name: "Should return false - wrong ecr url",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong ecr url",
+			expEcrRegistry:   expEcrRegistry,
 			args: args{
 				_type: 		 "helm",
 				ecrRegistry: "111111111122.dkr.ecr.us-east-1.amazonaws.com",
@@ -45,8 +45,8 @@ func TestValidateECRSecret(t *testing.T) {
 			wantstring:     "111111111111.dkr.ecr.us-east-1.amazonaws.com",
 		},
 		{
-			name: "Should return false - wrong name",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong name",
+			expEcrRegistry:   expEcrRegistry,
 			args: args{
 				_type: 		 "helm",
 				ecrRegistry: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
@@ -61,8 +61,8 @@ func TestValidateECRSecret(t *testing.T) {
 			wantstring:     "ecr",
 		},
 		{
-			name: "Should return false - wrong type",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong type",
+			expEcrRegistry:  expEcrRegistry,
 			args: args{
 				_type: 		 "nothelm",
 				ecrRegistry: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
@@ -77,8 +77,8 @@ func TestValidateECRSecret(t *testing.T) {
 			wantstring:     "helm",
 		},
 		{
-			name: "Should return false - wrong enableOCI",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong enableOCI",
+			expEcrRegistry:  expEcrRegistry,
 			args: args{
 				_type: 		 "helm",
 				ecrRegistry: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
@@ -93,8 +93,8 @@ func TestValidateECRSecret(t *testing.T) {
 			wantstring:     "true",
 		},
 		{
-			name: "Should return false - wrong username",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong username",
+			expEcrRegistry:  expEcrRegistry,
 			args: args{
 				_type: 		 "helm",
 				ecrRegistry: "111111111111.dkr.ecr.us-east-1.amazonaws.com",
@@ -109,8 +109,8 @@ func TestValidateECRSecret(t *testing.T) {
 			wantstring:     "AWS",
 		},
 		{
-			name: "Should return false - wrong labels",
-			expEcrRegistry: expEcrRegistry,
+			name:            "Should return false - wrong labels",
+			expEcrRegistry:  expEcrRegistry,
 			args: args{
 				_type: 		 "helm",
 				ecrRegistry: "111111111111.dkr.ecr.us-east-1.amazonaws.com",

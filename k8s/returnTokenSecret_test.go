@@ -11,27 +11,27 @@ import (
 
 func TestReturnTokenSecret(t *testing.T) {
 	type args struct {
-		secret      string
-		namespace string
+		secret     string
+		namespace  string
 		fakesecret string
 	}
 	tests := []struct {
-		name string
-		args args
+		name         string
+		args         args
 		wantedSecret *v1.Secret
-		wantederr string
+		wantederr    string
 	}{
 		{
 			name: "Should succeed",
 			args: args{
-				secret:      "my-secret",
-				namespace: "abualks",
+				secret:     "my-secret",
+				namespace:  "abualks",
 				fakesecret: "ZmFrZXNlY3JldA==",
 			},
 			wantedSecret: &v1.Secret{
 				ObjectMeta: metav1.ObjectMeta{
 					Namespace: "abualks", 
-					Name: "my-secret",
+					Name:      "my-secret",
 				},
 				Data: map[string][]byte{
 					"fakesecret": []byte("ZmFrZXNlY3JldA=="),
@@ -46,7 +46,7 @@ func TestReturnTokenSecret(t *testing.T) {
 				namespace: "abualks",
 			},
 			wantedSecret: &v1.Secret{},
-			wantederr: "secrets \"not-found\" not found",
+			wantederr:   "secrets \"not-found\" not found",
 		},
 	}
 	for _, tt := range tests {
@@ -57,7 +57,10 @@ func TestReturnTokenSecret(t *testing.T) {
 			if tt.args.secret != "not-found" {
 
 				secret := &v1.Secret{
-					ObjectMeta: metav1.ObjectMeta{Namespace: tt.args.namespace, Name: tt.args.secret},
+					ObjectMeta: metav1.ObjectMeta{
+						Namespace: tt.args.namespace, 
+						Name: tt.args.secret,
+					},
 					Data: map[string][]byte{
 						"fakesecret": []byte(tt.args.fakesecret),
 					},
