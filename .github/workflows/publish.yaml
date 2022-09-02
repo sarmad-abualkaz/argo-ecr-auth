@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yaml
+    secrets: inherit
+
+  publish-image:
+    needs: build-and-test
+    uses: ./.github/workflows/publish-image.yml
+    secrets: inherit
