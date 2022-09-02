@@ -1,0 +1,21 @@
+name: Publish Artifacts
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yaml
+    with:
+      PROJECT: argo-ecr-auth
+    secrets: inherit
+
+  publish-image:
+    needs: build-and-test
+    uses: ./.github/workflows/publish-image.yml
+    with:
+      PROJECT: argo-ecr-auth
+      DOCKERREGISTRY: abualks
+    secrets: inherit
