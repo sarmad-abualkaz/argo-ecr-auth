@@ -1,5 +1,12 @@
 name: Test Then Build
 
+on:
+  workflow_call:
+  inputs:
+    PROJECT: 
+      required: true
+      type: string
+
 jobs:
 
   test:
@@ -24,4 +31,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build Docker Image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{ inputs.PROJECT }}:$(date +%s)

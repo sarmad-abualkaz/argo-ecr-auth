@@ -4,13 +4,22 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  PROJECT: argo-ecr-auth
+  DOCKERREGISTRY: abualks
+
 jobs:
 
   build-and-test:
     uses: ./.github/workflows/build-and-test.yaml
+    with:
+      PROJECT: ${{ PROJECT }}
     secrets: inherit
 
   publish-image:
     needs: build-and-test
     uses: ./.github/workflows/publish-image.yml
+    with:
+      PROJECT: ${{ PROJECT }}
+      DOCKERREGISTRY: ${{ DOCKERREGISTRY }}
     secrets: inherit

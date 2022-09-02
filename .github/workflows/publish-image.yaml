@@ -1,8 +1,15 @@
 name: Build and Push Image
 
-env:
-  PROJECT: argo-ecr-auth
-  DOCKERREGISTRY: abualks
+
+on:
+  workflow_call:
+  inputs:
+    PROJECT: 
+      required: true
+      type: string
+    DOCKERREGISTRY:
+      required: true
+      type: string
 
 jobs:
   
@@ -31,4 +38,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{DOCKERREGISTRY}}/${{PROJECT}}:${{IMAGE_TAG}}
+          tags: ${{ inputs.DOCKERREGISTRY }}/${{ inputs.PROJECT }}:${{ IMAGE_TAG }}
