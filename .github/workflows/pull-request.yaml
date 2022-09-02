@@ -4,13 +4,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  PROJECT: argo-ecr-auth    
-
 jobs:
 
   build-and-test:
     uses: ./.github/workflows/build-and-test.yaml
     with:
-      PROJECT: ${{ env.PROJECT }}
+      PROJECT: argo-ecr-auth
     secrets: inherit
