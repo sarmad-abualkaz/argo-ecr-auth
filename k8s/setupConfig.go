@@ -19,7 +19,7 @@ type Client struct {
 func SetupK8sClient(location string) (Client, error) {
 
 	var configError error
-	var config *rest.Config
+	var config      *rest.Config
 
 	log.WithFields(log.Fields{
 		"config_location": location,

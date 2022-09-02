@@ -7,11 +7,11 @@ import (
 func ValidateECRSecret(ecrRegistry string, secretContent *v1.Secret) (bool, string, string, string) {
 
 	_ecrRegistry := string(secretContent.Data["url"])
-	_name := string(secretContent.Data["name"])
-	_type := string(secretContent.Data["type"])
-	_enableOCI := string(secretContent.Data["enableOCI"])
-	_username := string(secretContent.Data["username"])
-	_labels := secretContent.ObjectMeta.Labels["argocd.argoproj.io/secret-type"]
+	_enableOCI   := string(secretContent.Data["enableOCI"])
+	_labels      := secretContent.ObjectMeta.Labels["argocd.argoproj.io/secret-type"]
+	_name        := string(secretContent.Data["name"])
+	_type        := string(secretContent.Data["type"])
+	_username    := string(secretContent.Data["username"])
 
 	if _ecrRegistry != ecrRegistry {
 		return false, "secretContent.StringData['url']", _ecrRegistry, ecrRegistry

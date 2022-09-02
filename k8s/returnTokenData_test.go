@@ -81,11 +81,11 @@ func TestReturnTokenData(t *testing.T) {
 			cmContentData, cmErr := ReturnTokenData(client, tt.args.cm, tt.args.namespace)
 
 			if !reflect.DeepEqual(cmContentData["expireyTime"], tt.wantexpireyTime){
-				t.Errorf("ReturnTokenData() = %v, want %v", cmContentData["expireyTime"], tt.wantexpireyTime)
+				t.Errorf("ReturnTokenData() = got expireyTime %v, want %v", cmContentData["expireyTime"], tt.wantexpireyTime)
 			}
 
 			if !reflect.DeepEqual(cmContentData["name"], tt.wantname){
-				t.Errorf("ReturnTokenData() = %v, want %v", cmContentData["name"], tt.wantname)
+				t.Errorf("ReturnTokenData() = got name %v, want %v", cmContentData["name"], tt.wantname)
 			}
 
 			if cmErr != nil {

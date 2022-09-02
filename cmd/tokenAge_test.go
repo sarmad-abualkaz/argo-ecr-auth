@@ -57,7 +57,13 @@ func TestTokenExpired(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		got := TokenExpired(tt.args.tokenExpireyTime)
+
+		expireyTimeStr, _ := tt.args.tokenExpireyTime.MarshalText()
+		cmData := map[string]string{
+			"expireyTime": string(expireyTimeStr),
+		}
+
+		got := TokenExpired(cmData)
 		if !reflect.DeepEqual(got, tt.want){
 			t.Errorf("TokenExpired() = %v, want %v", got, tt.want)
 		}

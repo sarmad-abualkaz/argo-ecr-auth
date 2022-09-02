@@ -124,27 +124,27 @@ func TestUpdateTokenSecret(t *testing.T) {
 				secretContentData := secretContent.StringData
 				
 				if !reflect.DeepEqual(secretContentData["url"], tt.wantecr){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["url"], tt.wantecr)
+					t.Errorf("UpdateTokenSecret() = got url %v, want %v", secretContentData["url"], tt.wantecr)
 				}
 
 				if !reflect.DeepEqual(secretContentData["name"], wantname){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["name"], wantname)
+					t.Errorf("UpdateTokenSecret() = got name %v, want %v", secretContentData["name"], wantname)
 				}
 
 				if !reflect.DeepEqual(secretContentData["type"], wanttype){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["type"], wanttype)
+					t.Errorf("UpdateTokenSecret() = got type %v, want %v", secretContentData["type"], wanttype)
 				}
 
 				if !reflect.DeepEqual(secretContentData["enableOCI"], wantenableOCI){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["enableOCI"], wantenableOCI)
+					t.Errorf("UpdateTokenSecret() = got enableOCI %v, want %v", secretContentData["enableOCI"], wantenableOCI)
 				}
 
 				if !reflect.DeepEqual(secretContentData["username"], wantuser){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["username"], wantuser)
+					t.Errorf("UpdateTokenSecret() = got username %v, want %v", secretContentData["username"], wantuser)
 				}
 
 				if !reflect.DeepEqual(secretContentData["password"], tt.wantpasswd){
-					t.Errorf("UpdateTokenSecret() = %v, want %v", secretContentData["password"], tt.wantpasswd)
+					t.Errorf("UpdateTokenSecret() = got password %v, want %v", secretContentData["password"], tt.wantpasswd)
 				}
 			}
 		})

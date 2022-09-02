@@ -20,7 +20,7 @@ func GenerateECRTokent(sess *session.Session, region string, ecrRegistry string)
 
 	log.WithFields(log.Fields{
 		"region": region,
-		"ecr": ecrRegistry,
+		"ecr":    ecrRegistry,
 	}).Info("Call ECR for authorization token ...")
 
 	ecrClient := ECRClient{
@@ -43,8 +43,8 @@ func GenerateECRTokentHelper(ecrClient ECRClient) (string, time.Time, error) {
 	}
 
 	decodedAuthorizationToken, _ := base64.StdEncoding.DecodeString(*result.AuthorizationData[0].AuthorizationToken)
-	password := strings.Split(string(decodedAuthorizationToken), ":")[1]
 	
+	password   := strings.Split(string(decodedAuthorizationToken), ":")[1]
 	expiryTime := *result.AuthorizationData[0].ExpiresAt
 
 	return password, expiryTime, nil

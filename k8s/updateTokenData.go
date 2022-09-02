@@ -15,27 +15,28 @@ func UpdateTokenData(k8sClient Client, cm string, namespace string, expireyTime 
 	var err error
 
 	cmClient := k8sClient.Clientset.CoreV1().ConfigMaps(namespace)
+	
 	expireyTimeStr, _ := expireyTime.MarshalText()
 
 	cmManifest := &v1.ConfigMap{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: cm,
+			Name:      cm,
 			Namespace: namespace,
-			Labels: map[string]string{
-				"argo-ecr-auth": "managed-resource",
-			},
+			Labels:    map[string]string{
+				         "argo-ecr-auth": "managed-resource",
+			           },
 		},
 		Data: map[string]string{
 			"expireyTime": string(expireyTimeStr),
-			"name": ecrRegistry,
+			"name":        ecrRegistry,
 		},
 	}
 
 	if exists {
 		
 		log.WithFields(log.Fields{
+			"name":      cm,
 			"namespace": namespace,
-			"name": cm,
 		}).Info("Updating configmap with token expirey timestamp ...")
 
 		_, err = cmClient.Update(context.TODO(), cmManifest, metav1.UpdateOptions{})
@@ -44,8 +45,8 @@ func UpdateTokenData(k8sClient Client, cm string, namespace string, expireyTime 
 	} else {
 
 		log.WithFields(log.Fields{
+			"name":      cm,
 			"namespace": namespace,
-			"name": cm,
 		}).Info("Creating configmap with token expirey timestamp ...")
 
 		_, err = cmClient.Create(context.TODO(), cmManifest, metav1.CreateOptions{})

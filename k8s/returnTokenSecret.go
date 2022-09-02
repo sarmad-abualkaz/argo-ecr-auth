@@ -11,8 +11,8 @@ import (
 func ReturnTokenSecret(k8sClient Client, secret string, namespace string) (*v1.Secret, error) {
 
 	log.WithFields(log.Fields{
+		"name":      secret,
 		"namespace": namespace,
-		"name": secret,
 	}).Info("Looking for secret ...")
 
 	secretcontent, err := k8sClient.Clientset.CoreV1().Secrets(namespace).Get(context.TODO(), secret, metav1.GetOptions{})
@@ -23,8 +23,8 @@ func ReturnTokenSecret(k8sClient Client, secret string, namespace string) (*v1.S
 	}
 
 	log.WithFields(log.Fields{
+		"name":      secret,
 		"namespace": namespace,
-		"name": secret,
 	}).Info("secret found ...")
 	
 	return secretcontent, nil

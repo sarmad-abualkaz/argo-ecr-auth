@@ -10,8 +10,8 @@ import (
 func ReturnTokenData(k8sClient Client, cm string, namespace string) (map[string]string, error) {
 
 	log.WithFields(log.Fields{
+		"name":      cm,
 		"namespace": namespace,
-		"name": cm,
 	}).Info("Looking for configmap data for secret ...")
 
 	cmcontent, err := k8sClient.Clientset.CoreV1().ConfigMaps(namespace).Get(context.TODO(), cm, metav1.GetOptions{})
@@ -21,8 +21,8 @@ func ReturnTokenData(k8sClient Client, cm string, namespace string) (map[string]
 	}
 
 	log.WithFields(log.Fields{
+		"name":      cm,
 		"namespace": namespace,
-		"name": cm,
 	}).Info("configmap for secret found ...")
 	
 	return cmcontent.Data, nil

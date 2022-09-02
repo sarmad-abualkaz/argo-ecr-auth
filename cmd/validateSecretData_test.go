@@ -144,19 +144,19 @@ func TestValidateECRSecret(t *testing.T) {
 		gotresutl, gotcomment, gotunwantedstring, gotstring := ValidateECRSecret(tt.expEcrRegistry, secret)
 
 		if !reflect.DeepEqual(gotresutl, tt.wantresult){
-			t.Errorf("ValidateECRSecret() = %v, want %v", gotresutl, tt.wantresult)
+			t.Errorf("ValidateECRSecret() = gotresult %v, want %v", gotresutl, tt.wantresult)
 		}
 
 		if !reflect.DeepEqual(gotcomment, tt.wantcomment){
-			t.Errorf("ValidateECRSecret() = %v, want %v", gotcomment, tt.wantcomment)
+			t.Errorf("ValidateECRSecret() = gotcomment %v, want %v", gotcomment, tt.wantcomment)
 		}
 
 		if !reflect.DeepEqual(gotunwantedstring, tt.unwantedstring){
-			t.Errorf("ValidateECRSecret() = %v, want %v", gotunwantedstring, tt.unwantedstring)
+			t.Errorf("ValidateECRSecret() = gotunwantedstring %v, want %v", gotunwantedstring, tt.unwantedstring)
 		}
 
 		if !reflect.DeepEqual(gotstring, tt.wantstring){
-			t.Errorf("ValidateECRSecret() = %v, want %v", gotunwantedstring, tt.unwantedstring)
+			t.Errorf("ValidateECRSecret() = gotstring %v, want %v", gotunwantedstring, tt.unwantedstring)
 		}
 	}
 }
