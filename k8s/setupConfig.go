@@ -12,10 +12,14 @@ import (
 
 )
 
-func SetupK8sClient(location string) (*kubernetes.Clientset, error) {
+type Client struct {
+	Clientset kubernetes.Interface
+}
+
+func SetupK8sClient(location string) (Client, error) {
 
 	var configError error
-	var config *rest.Config
+	var config      *rest.Config
 
 	log.WithFields(log.Fields{
 		"config_location": location,
@@ -48,14 +52,18 @@ func SetupK8sClient(location string) (*kubernetes.Clientset, error) {
 	}
 
 	if configError != nil {
-		return nil, configError
+		return Client{}, configError
 	}
 
 	// create the clientset
 	clientset, clientsetErr := kubernetes.NewForConfig(config)
 	if clientsetErr != nil {
-		return nil, clientsetErr
+		return Client{}, clientsetErr
 	}
 
-	return clientset, nil
+	clientInstance := Client{
+		Clientset: clientset,
+	}
+
+	return clientInstance, nil
 }

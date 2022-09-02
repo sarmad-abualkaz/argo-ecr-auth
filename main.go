@@ -15,7 +15,7 @@ func main() {
 	k8sConfig := flag.String("kube-config", "in-cluster", "kubeconfig setup")
 	namespace := flag.String("namespace", "argocd", "kubernetes namespace where secret exists")
 	secretName := flag.String("secret-name", "ecr-auth", "kubernetes secret name to sync from/to")
-	sleep := flag.Int("sleep-between-checks", 20, "sleep time between syncs")
+	sleep := flag.Int("sleep-between-checks", 120, "sleep time between syncs")
 	
 	flag.Parse()
 

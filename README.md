@@ -14,7 +14,7 @@ This project can be deployed to a Kubenretes cluster via Helm using the followin
 ```
 helm repo add sarmad-helm-charts https://sarmad-abualkaz.github.io/my-helm-charts/
 
-helm install <Release-Name> sarmad-helm-charts/k8s-s3-sync --set args='{"--ecr-registry=<ECR-Endpoint>","--aws-region=<AWS-Region>", --namespace=<ArgoCD-Namspace>}'
+helm install <Release-Name> sarmad-helm-charts/argo-ecr-auth --set args='{"--ecr-registry=<ECR-Endpoint>","--aws-region=<AWS-Region>", "--namespace=<ArgoCD-Namspace>}"'
 ```
 
 

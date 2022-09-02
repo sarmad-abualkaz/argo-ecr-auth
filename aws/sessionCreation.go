@@ -12,7 +12,7 @@ func CreateSession(profile string, region string) (*session.Session, error) {
 
 		log.WithFields(log.Fields{
 			"profile": profile,
-			"region": region,
+			"region":  region,
 		}).Info("Creating aws session ...")
 
 		// Set AWS session
