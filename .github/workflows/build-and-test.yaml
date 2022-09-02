@@ -2,10 +2,10 @@ name: Test Then Build
 
 on:
   workflow_call:
-  inputs:
-    PROJECT: 
-      required: true
-      type: string
+    inputs:
+      PROJECT: 
+        required: true
+        type: string
 
 jobs:
 

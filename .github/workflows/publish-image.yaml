@@ -3,13 +3,13 @@ name: Build and Push Image
 
 on:
   workflow_call:
-  inputs:
-    PROJECT: 
-      required: true
-      type: string
-    DOCKERREGISTRY:
-      required: true
-      type: string
+    inputs:
+      PROJECT: 
+        required: true
+        type: string
+      DOCKERREGISTRY:
+        required: true
+        type: string
 
 jobs:
   
