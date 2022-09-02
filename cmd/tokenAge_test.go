@@ -49,7 +49,7 @@ func TestTokenExpired(t *testing.T) {
 		},
 		{
 			// a day in the past - should return true
-			name: "should return true - 1 hours remaining only",
+			name: "should return true - a long day ago",
 			args: args{
 				tokenExpireyTime: time.Date(2000, 2, 1, 12, 30, 0, 0, time.UTC),
 			},

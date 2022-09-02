@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/sarmad-abualkaz/argo-ecr-auth/k8s"
-	// "k8s.io/apimachinery/pkg/api/errors"
 
 	log "github.com/sirupsen/logrus"
 )

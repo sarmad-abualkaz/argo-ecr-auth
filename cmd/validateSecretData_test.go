@@ -156,7 +156,7 @@ func TestValidateECRSecret(t *testing.T) {
 		}
 
 		if !reflect.DeepEqual(gotstring, tt.wantstring){
-			t.Errorf("ValidateECRSecret() = gotstring %v, want %v", gotunwantedstring, tt.unwantedstring)
+			t.Errorf("ValidateECRSecret() = gotstring %v, want %v", gotstring, tt.wantstring)
 		}
 	}
 }

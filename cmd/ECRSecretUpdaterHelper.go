@@ -75,7 +75,7 @@ func ECRSecretUpdaterHelper(k8sclient callk8s.Client, namespace string, secret s
 		cmExist = true
 	}
 
-	// if secret cannot be found
+	// if secret or cm cannot be found
 	if !secretExist || !cmExist {
 
 		update = true
