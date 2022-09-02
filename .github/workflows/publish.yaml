@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Publish Artifacts
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
   build-and-test:
     uses: ./.github/workflows/build-and-test.yaml
     with:
-        PROJECT: argo-ecr-auth
+      PROJECT: argo-ecr-auth
     secrets: inherit
 
   publish-image:
