@@ -13,13 +13,13 @@ jobs:
   build-and-test:
     uses: ./.github/workflows/build-and-test.yaml
     with:
-      PROJECT: ${{ PROJECT }}
+      PROJECT: ${{ env.PROJECT }}
     secrets: inherit
 
   publish-image:
     needs: build-and-test
     uses: ./.github/workflows/publish-image.yml
     with:
-      PROJECT: ${{ PROJECT }}
-      DOCKERREGISTRY: ${{ DOCKERREGISTRY }}
+      PROJECT: ${{ env.PROJECT }}
+      DOCKERREGISTRY: ${{ env.DOCKERREGISTRY }}
     secrets: inherit

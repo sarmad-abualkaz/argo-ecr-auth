@@ -30,9 +30,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Set Image Tag
-      run: |
-        IMAGE_TAG=$(cat charts/${PROJECT}/Chart.yaml | grep appVersion | awk '{print $2}') >> $GITHUB_ENV
+      - name: Set Image Tag
+        run: |
+          IMAGE_TAG=$(cat charts/${PROJECT}/Chart.yaml | grep appVersion | awk '{print $2}') >> $GITHUB_ENV
 
       - name: Build and push
         uses: docker/build-push-action@v3
