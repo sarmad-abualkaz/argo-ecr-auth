@@ -11,4 +11,6 @@ jobs:
 
   build-and-test:
     uses: ./.github/workflows/build-and-test.yaml
+    with:
+      PROJECT: ${{ PROJECT }}
     secrets: inherit
