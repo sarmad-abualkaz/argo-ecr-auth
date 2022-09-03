@@ -40,13 +40,13 @@ jobs:
       run: |
         CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
         helm package main/charts/${{ inputs.PROJECT }}
-        mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
-        cd ${{ inputs.REPOSITORY }}
-        if [[ -f ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ]]
+        if [[ -f ${{ inputs.REPOSITORY }}/${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ]]
         then
           echo helm chart with this version already exists
           echo ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
         else
+          mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
+          cd ${{ inputs.REPOSITORY }}
           echo publishing chart: ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
