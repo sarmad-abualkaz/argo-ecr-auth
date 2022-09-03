@@ -36,7 +36,6 @@ jobs:
       with:
         version: v3.8.1
 
-    #test comment
     - name: Publish Chart
       run: |
         CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
