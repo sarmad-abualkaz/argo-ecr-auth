@@ -6,22 +6,22 @@ on:
 
 jobs:
 
-  # build-and-test:
-  #   uses: ./.github/workflows/build-and-test.yaml
-  #   with:
-  #     PROJECT: argo-ecr-auth
-  #   secrets: inherit
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yaml
+    with:
+      PROJECT: argo-ecr-auth
+    secrets: inherit
 
-  # publish-image:
-  #   needs: build-and-test
-  #   uses: ./.github/workflows/publish-image.yaml
-  #   with:
-  #     PROJECT: argo-ecr-auth
-  #     DOCKERREGISTRY: abualks
-  #   secrets: inherit
+  publish-image:
+    needs: build-and-test
+    uses: ./.github/workflows/publish-image.yaml
+    with:
+      PROJECT: argo-ecr-auth
+      DOCKERREGISTRY: abualks
+    secrets: inherit
 
   publish-chart:
-    # needs: publish-image
+    needs: publish-image
     uses: ./.github/workflows/publish-chart.yaml
     with:
       PROJECT: argo-ecr-auth
