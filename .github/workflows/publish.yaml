@@ -21,7 +21,7 @@ jobs:
   #   secrets: inherit
 
   publish-chart:
-    needs: publish-image
+    # needs: publish-image
     uses: ./.github/workflows/publish-chart.yaml
     with:
       PROJECT: argo-ecr-auth
