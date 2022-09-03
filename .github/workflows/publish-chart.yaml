@@ -37,10 +37,10 @@ jobs:
 
     - name: Publish Chart
       run: |
-        CHART_VERSION=$(cat ${ GITHUB_WORKSPACE }/main/${{ inputs.PROJECT }}/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
-        helm package ${ GITHUB_WORKSPACE }/main/charts/${{ inputs.PROJECT }}
-        mv ${{ inputs.PROJECT }}-${ CHART_VERSION }.tgz ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
-        cd ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
+        CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
+        helm package main/charts/${{ inputs.PROJECT }}
+        mv ${{ inputs.PROJECT }}-${ CHART_VERSION }.tgz ${{ inputs.REPOSITORY }}
+        cd ${{ inputs.REPOSITORY }}
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git push origin {{ inputs.BRANCH }}
