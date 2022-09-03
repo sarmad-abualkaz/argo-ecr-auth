@@ -31,7 +31,7 @@ jobs:
 
       - name: Set Image Tag
         run: |
-          IMAGE_TAG=$(cat charts/${PROJECT}/Chart.yaml | grep appVersion | awk '{print $2}') >> $GITHUB_ENV
+          echo IMAGE_TAG=$(cat charts/${{ inputs.PROJECT }}/Chart.yaml | grep appVersion | awk '{print $2}' | tr -d '"') >> $GITHUB_ENV
 
       - name: Build and push
         uses: docker/build-push-action@v3
