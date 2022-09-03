@@ -28,3 +28,4 @@ jobs:
       OWNER: sarmad-abualkaz
       REPOSITORY: my-helm-charts
       BRANCH: main
+    secrets: inherit
