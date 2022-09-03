@@ -43,6 +43,7 @@ jobs:
         mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
         cd ${{ inputs.REPOSITORY }}
         if [[ -f ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ]]
+        then
           echo helm chart with this version already exists
           echo ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
         else
