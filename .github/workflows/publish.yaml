@@ -14,7 +14,7 @@ jobs:
 
   publish-image:
     needs: build-and-test
-    uses: ./.github/workflows/publish-image.yml
+    uses: ./.github/workflows/publish-image.yaml
     with:
       PROJECT: argo-ecr-auth
       DOCKERREGISTRY: abualks
