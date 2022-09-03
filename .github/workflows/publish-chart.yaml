@@ -1,0 +1,30 @@
+name: release-chart
+
+on:
+  workflow_call:
+    inputs:
+      CHARTS_URL:
+        required: true
+        type: string
+      OWNER:
+        required: true
+        type: string
+      REPOSITORY:
+        required: true
+        type: string
+      BRANCH:  
+        required: true
+        type: string
+jobs:
+  release-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish Helm chart
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          charts_url: ${{ inputs.CHARTS_URL }}
+          owner: ${{ inputs.OWNER }}
+          repository: ${{ inputs.REPOSITORY }}
+          branch: ${{ inputs.BRANCH }}
