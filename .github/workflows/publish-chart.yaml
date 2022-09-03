@@ -25,7 +25,6 @@ jobs:
         path: main
 
     - name: Clone Helm Charts Repo
-      env:
       uses: actions/checkout@v3
       with:
         path: ${{ inputs.REPOSITORY }}
