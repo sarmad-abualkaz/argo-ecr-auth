@@ -37,7 +37,7 @@ jobs:
 
     - name: Publish Chart
       env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        API_TOKEN_GITHUB: ${{ secrets.BOT_GITHUB_TOKEN }}
       run: |
         CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
         helm package main/charts/${{ inputs.PROJECT }}
