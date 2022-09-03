@@ -39,10 +39,8 @@ jobs:
       run: |
         CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
         helm package main/charts/${{ inputs.PROJECT }}
-        echo ${CHART_VERSION}
-        echo ${{inputs.PROJECT }}-${CHART_VERSION}.tgz
-      # mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
-      # cd ${{ inputs.REPOSITORY }}
-      # git config user.name "$GITHUB_ACTOR"
-      # git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      # git push origin ${{ inputs.BRANCH }}
+        mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
+        cd ${{ inputs.REPOSITORY }}
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git push origin ${{ inputs.BRANCH }}
