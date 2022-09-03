@@ -23,7 +23,7 @@ jobs:
       - name: Publish Helm chart
         uses: stefanprodan/helm-gh-pages@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
           charts_url: ${{ inputs.CHARTS_URL }}
           owner: ${{ inputs.OWNER }}
           repository: ${{ inputs.REPOSITORY }}
