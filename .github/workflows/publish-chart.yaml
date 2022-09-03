@@ -25,11 +25,13 @@ jobs:
         path: main
 
     - name: Clone Helm Charts Repo
+      env:
+        BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
       uses: actions/checkout@v3
       with:
         path: ${{ inputs.REPOSITORY }}
         repository: ${{ inputs.OWNER }}/${{ inputs.REPOSITORY }}
-        token: ${{ secrets.BOT_GITHUB_TOKEN }}
+        token: ${{ env.BOT_GITHUB_TOKEN }}
 
     - name: Install Helm
       uses: azure/setup-helm@v1
