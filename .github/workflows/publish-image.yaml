@@ -29,6 +29,8 @@ jobs:
           username: ${{ inputs.DOCKERREGISTRY }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - uses: actions/checkout@v3
+
       - name: Set Image Tag
         run: |
           echo IMAGE_TAG=$(cat charts/${{ inputs.PROJECT }}/Chart.yaml | grep appVersion | awk '{print $2}' | tr -d '"') >> $GITHUB_ENV
