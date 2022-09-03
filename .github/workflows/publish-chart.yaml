@@ -21,17 +21,11 @@ jobs:
       with:
         path: main
 
-    
     - name: Clone Helm Charts Repo
       uses: actions/checkout@v3
       with:
         repository: ${{ inputs.OWNER }}/${{ inputs.REPOSITORY }}
         path: ${{ inputs.REPOSITORY }}
-    
-    - name: Configure Git
-      run: |
-        git config user.name "$GITHUB_ACTOR"
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
     - name: Install Helm
       uses: azure/setup-helm@v1
@@ -44,4 +38,6 @@ jobs:
         helm package ${ GITHUB_WORKSPACE }/main/charts/${{ inputs.PROJECT }}
         mv ${{ inputs.PROJECT }}-${ CHART_VERSION }.tgz ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
         cd ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git push origin {{ inputs.BRANCH }}
