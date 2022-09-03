@@ -20,11 +20,11 @@ jobs:
   #     DOCKERREGISTRY: abualks
   #   secrets: inherit
 
-publish-chart:
-  needs: publish-image
-  uses: ./.github/workflows/publish-chart.yaml
-  with:
-    CHARTS_URL: https://sarmad-abualkaz.github.io/my-helm-charts/
-    OWNER: sarmad-abualkaz
-    REPOSITORY: my-helm-charts
-    BRANCH: main
+  publish-chart:
+    needs: publish-image
+    uses: ./.github/workflows/publish-chart.yaml
+    with:
+      CHARTS_URL: https://sarmad-abualkaz.github.io/my-helm-charts/
+      OWNER: sarmad-abualkaz
+      REPOSITORY: my-helm-charts
+      BRANCH: main
