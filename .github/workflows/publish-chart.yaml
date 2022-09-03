@@ -1,0 +1,57 @@
+name: release-chart
+
+on:
+  workflow_call:
+    inputs:
+      PROJECT: 
+        required: true
+        type: string
+      OWNER:
+        required: true
+        type: string
+      REPOSITORY:
+        required: true
+        type: string
+      BRANCH:  
+        required: true
+        type: string
+jobs:
+  release-chart:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone Repo
+      uses: actions/checkout@v3
+      with:
+        path: main
+
+    - name: Clone Helm Charts Repo
+      uses: actions/checkout@v3
+      with:
+        path: ${{ inputs.REPOSITORY }}
+        repository: ${{ inputs.OWNER }}/${{ inputs.REPOSITORY }}
+        token: ${{ secrets.GH_PAT }}
+
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.8.1
+
+    - name: Publish Chart
+      run: |
+        CHART_VERSION=$(cat main/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
+        helm package main/charts/${{ inputs.PROJECT }}
+        mv ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ${{ inputs.REPOSITORY }}
+        cd ${{ inputs.REPOSITORY }}
+        if [[ -f ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz ]]
+        then
+          echo helm chart with this version already exists
+          echo ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
+        else
+          echo publishing chart: ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
+          git commit -m "adding ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz"
+          git push origin ${{ inputs.BRANCH }}
+          echo chart published: ${{ inputs.PROJECT }}-${CHART_VERSION}.tgz
+        fi
