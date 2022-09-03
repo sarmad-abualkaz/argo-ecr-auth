@@ -2,23 +2,23 @@ name: Publish Artifacts
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "helm-workflow" ]
 
 jobs:
 
-  build-and-test:
-    uses: ./.github/workflows/build-and-test.yaml
-    with:
-      PROJECT: argo-ecr-auth
-    secrets: inherit
+  # build-and-test:
+  #   uses: ./.github/workflows/build-and-test.yaml
+  #   with:
+  #     PROJECT: argo-ecr-auth
+  #   secrets: inherit
 
-  publish-image:
-    needs: build-and-test
-    uses: ./.github/workflows/publish-image.yaml
-    with:
-      PROJECT: argo-ecr-auth
-      DOCKERREGISTRY: abualks
-    secrets: inherit
+  # publish-image:
+  #   needs: build-and-test
+  #   uses: ./.github/workflows/publish-image.yaml
+  #   with:
+  #     PROJECT: argo-ecr-auth
+  #     DOCKERREGISTRY: abualks
+  #   secrets: inherit
 
   publish-chart:
     needs: publish-image
