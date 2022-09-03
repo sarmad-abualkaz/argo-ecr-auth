@@ -37,7 +37,7 @@ jobs:
 
     - name: Publish Chart
       run: |
-        CHART_VERSION=$(cat charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
+        CHART_VERSION=$(cat ${ GITHUB_WORKSPACE }/main/${{ inputs.PROJECT }}/charts/${{ inputs.PROJECT }}/Chart.yaml | grep version | awk '{print $2}' )
         helm package ${ GITHUB_WORKSPACE }/main/charts/${{ inputs.PROJECT }}
         mv ${{ inputs.PROJECT }}-${ CHART_VERSION }.tgz ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
         cd ${ GITHUB_WORKSPACE }/${{ inputs.REPOSITORY }}
