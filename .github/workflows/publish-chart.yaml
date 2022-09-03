@@ -3,6 +3,9 @@ name: release-chart
 on:
   workflow_call:
     inputs:
+      PROJECT: 
+        required: true
+        type: string
       OWNER:
         required: true
         type: string

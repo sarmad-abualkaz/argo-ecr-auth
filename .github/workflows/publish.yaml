@@ -24,6 +24,7 @@ jobs:
     # needs: publish-image
     uses: ./.github/workflows/publish-chart.yaml
     with:
+      PROJECT: argo-ecr-auth
       OWNER: sarmad-abualkaz
       REPOSITORY: my-helm-charts
       BRANCH: main
